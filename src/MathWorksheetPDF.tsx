@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   page: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    padding: 10,
+    padding: 30,
     alignItems: 'flex-start',
   },
   row: {
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     flexBasis: '0%', // Adjust based on columns
     margin: 5,
-    padding: 5,
+    padding: 15,
   },
 });
 

@@ -41,7 +41,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className='app-container'>
       <LandingPage 
         onTopicChange={handleTopicChange}
         onRowsChange={handleRowsChange}
@@ -49,7 +49,7 @@ const App: React.FC = () => {
         onGenerate={generateWorksheet}
       />
       <Modal isOpen={isModalOpen} onClose={closeModal}>
-      <BlobProvider document={<MathWorksheetPDF worksheet={worksheet} />}>
+        <BlobProvider document={<MathWorksheetPDF worksheet={worksheet} />}>
           {({ blob, url, loading, error }) => {
             if (loading) {
               return <div>Loading PDF...</div>;
@@ -61,8 +61,10 @@ const App: React.FC = () => {
               <div>
                 {url && (
                   <>
-                    <iframe src={url} style={{ width: '100%', height: '500px' }} />
-                    <a href={url} download="math-worksheet.pdf">Download PDF</a>
+                    <iframe src={url} className="pdf-iframe" title="Worksheet PDF"></iframe>
+                    <a href={url} download="math-worksheet.pdf" className="download-button">
+                      Download PDF
+                    </a>
                   </>
                 )}
               </div>

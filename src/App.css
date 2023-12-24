@@ -1,7 +1,6 @@
 .app-container {
-  display: flex;
   height: 100vh; /* Full viewport height */
-  padding: 20px;
+  padding: 5% 30%;
 }
 
 .generate-button {
@@ -24,6 +23,8 @@
 .worksheet-display {
   display: flex;
   flex-direction: column;
+  flex-grow: 0;
+  flex-shrink: 0;
 }
 
 .worksheet-row {
@@ -37,8 +38,6 @@
   min-width: 50px;
   text-align: center;
 }
-
-
 
 .modal-backdrop {
   position: fixed;
@@ -56,4 +55,98 @@
   background-color: white;
   padding: 20px;
   border-radius: 5px;
+  width: 80%;   /* Adjust the width as needed */
+  height: 80%;  /* Adjust the height as needed */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  height: 80vh; /* Adjust the height of the modal */
+  overflow: auto; /* Scroll if content exceeds modal height */
+}
+
+@media (max-width: 768px) {
+  .modal-content {
+    width: 95%;   /* Larger width for smaller screens */
+    height: auto; /* Auto height for better mobile viewing */
+  }
+}
+
+h1 {
+  color: #2a3f54;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  overflow: hidden;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="number"],
+select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+}
+
+button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .worksheet-row {
+    flex-direction: column;
+  }
+}
+
+
+.download-button {
+  display: inline-block;
+  background-color: #4CAF50; /* Example button color */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.download-button:hover, .download-button:focus {
+  background-color: #45a049; /* Slightly darker green */
+}
+
+
+.pdf-iframe {
+  height: 60vh; /* Set the height to a percentage of the viewport height */
+  width: 100%;  /* Allow the width to adjust as needed */
+  border: none; /* Remove iframe border */
+  margin-bottom: 10px;
 }
