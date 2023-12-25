@@ -4,6 +4,7 @@ import './App.css'
 import Modal from './Modal'; // Import the Modal component
 import { BlobProvider } from '@react-pdf/renderer';
 import MathWorksheetPDF from './MathWorksheetPDF'; // Import the PDF component
+import { CircleLoader } from 'react-spinners';
 
 
 type MathProblem = {
@@ -42,7 +43,7 @@ const App: React.FC = () => {
 
   return (
     <div className='app-container'>
-      <LandingPage 
+      <LandingPage
         onTopicChange={handleTopicChange}
         onRowsChange={handleRowsChange}
         onColumnsChange={handleColumnsChange}
@@ -52,7 +53,11 @@ const App: React.FC = () => {
         <BlobProvider document={<MathWorksheetPDF worksheet={worksheet} />}>
           {({ blob, url, loading, error }) => {
             if (loading) {
-              return <div>Loading PDF...</div>;
+              return (
+                <div className="spinner-container">
+                  <CircleLoader /* Additional props like size and color can go here */ />
+                </div>
+              );
             }
             if (error) {
               return <div>Failed to load PDF</div>;
@@ -91,8 +96,8 @@ export default App;
 
 // Worksheet Generator logic
 function WorksheetGenerator(
-  topic: string, 
-  rows: number, 
+  topic: string,
+  rows: number,
   columns: number
 ): MathProblem[][] {
   const worksheet: MathProblem[][] = [];

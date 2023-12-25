@@ -27,11 +27,11 @@ const LandingPage: React.FC<LandingPageProps> = ({ onTopicChange, onRowsChange, 
         </div>
         <div className="form-group">
           <label htmlFor="rows">Number of Rows:</label>
-          <input type="number" id="rows" min="1" onChange={onRowsChange} />
+          <input type="number" id="rows" min="1" defaultValue='3' onChange={onRowsChange} />
         </div>
         <div className="form-group">
           <label htmlFor="columns">Number of Columns:</label>
-          <input type="number" id="columns" min="1" onChange={onColumnsChange} />
+          <input type="number" id="columns" min="1"  defaultValue='3' onChange={onColumnsChange} />
         </div>
         <button type="submit" className="generate-btn">Generate Worksheet</button>
       </form>

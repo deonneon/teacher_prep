@@ -1,5 +1,6 @@
 import React from 'react';
-import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
+import { Page, Text, View, Document, StyleSheet, Image } from '@react-pdf/renderer';
+import backgroundImage from './background.png';
 
 type MathProblem = {
   question: string;
@@ -12,10 +13,10 @@ interface MathWorksheetPDFProps {
 
 const styles = StyleSheet.create({
   page: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    padding: 30,
-    alignItems: 'flex-start',
+    position: 'relative',
+    width: '210mm',
+    height: '297mm',
+    padding: 0,
   },
   row: {
     flexDirection: 'row',
@@ -28,12 +29,21 @@ const styles = StyleSheet.create({
     margin: 5,
     padding: 15,
   },
+  backgroundImage: {
+    position: 'absolute',
+    width: '99.99%',
+    height: '99.99%', 
+    top: 0,
+    left: 0,
+    zIndex: -1,
+  },
 });
 
 const MathWorksheetPDF: React.FC<MathWorksheetPDFProps> = ({ worksheet }) => {
   return (
     <Document>
       <Page size="A4" style={styles.page}>
+        <Image src={backgroundImage} style={styles.backgroundImage} />
         {worksheet.map((row, rowIndex) => (
           <View key={rowIndex} style={styles.row}>
             {row.map((problem, problemIndex) => (
