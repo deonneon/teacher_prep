@@ -12,6 +12,7 @@ declare -a files=(
     "src/index.css"
     "src/index.tsx"
     "src/MathWorksheetPDF.tsx"
+    "server.js"
     # Add more files as needed
 )
 
