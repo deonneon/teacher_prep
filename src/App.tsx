@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import LandingPage from './LandingPage';
+import WorksheetGen from './work2';
 import './App.css'
 import Modal from './Modal'; // Import the Modal component
 import { BlobProvider } from '@react-pdf/renderer';
@@ -88,6 +89,7 @@ const App: React.FC = () => {
           ))}
         </div>
       </Modal>
+      <WorksheetGen/>
     </div>
   );
 };
