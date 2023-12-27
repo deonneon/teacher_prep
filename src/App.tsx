@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import LandingPage from './LandingPage';
-import WorksheetGen from './work2';
+import WorksheetGen from './LandingPage2';
 import './App.css'
 import Modal from './Modal'; // Import the Modal component
 import { BlobProvider } from '@react-pdf/renderer';
@@ -77,7 +77,7 @@ const App: React.FC = () => {
             );
           }}
         </BlobProvider>
-        <div className="worksheet-display">
+        {/* <div className="worksheet-display">
           {worksheet.map((row, rowIndex) => (
             <div key={rowIndex} className="worksheet-row">
               {row.map((problem, problemIndex) => (
@@ -87,7 +87,7 @@ const App: React.FC = () => {
               ))}
             </div>
           ))}
-        </div>
+        </div> */}
       </Modal>
       <WorksheetGen/>
     </div>

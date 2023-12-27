@@ -13,7 +13,7 @@ declare -a files=(
     "src/index.tsx"
     "src/MathWorksheetPDF.tsx"
     "server.js"
-    "src/work2.tsx"
+    "src/LandingPage2.tsx"
     # Add more files as needed
 )
 
