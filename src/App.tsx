@@ -4,7 +4,7 @@ import './App.css'
 import Modal from './Modal'; // Import the Modal component
 import { BlobProvider } from '@react-pdf/renderer';
 import WorksheetPDF from './WorksheetPDF'; // Import the PDF component
-import { CircleLoader } from 'react-spinners';
+import { ScaleLoader } from 'react-spinners';
 
 type Problem = {
   problem: string;
@@ -12,7 +12,7 @@ type Problem = {
 };
 
 const App: React.FC = () => {
-  const [topic, setTopic] = useState('');
+  const [topic, setTopic] = useState('Translate Spanish greetings');
   const [rows, setRows] = useState<number>(5);
   const [columns, setColumns] = useState<number>(5);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -66,7 +66,6 @@ const App: React.FC = () => {
       if (!data || !data.choices || !data.choices[0]) {
         throw new Error('Invalid response format');
       }
-
       setProblems(JSON.parse(data.choices[0].text).problems);
     } catch (error) {
       setError(error as Error);
@@ -90,7 +89,12 @@ const App: React.FC = () => {
             if (loading) {
               return (
                 <div className="spinner-container">
-                  <CircleLoader /* Additional props like size and color can go here */ />
+                  <ScaleLoader
+                    color="#36d7b7"
+                    margin={10}
+                    radius={60}
+                    width={40}
+                  />
                 </div>
               );
             }
@@ -111,12 +115,13 @@ const App: React.FC = () => {
             );
           }}
         </BlobProvider>
+        <div>This is the topic being fetched: { topic }</div>
         {isLoading && <p>Loading...</p>}
         {error && <p>Error: {error.message}</p>}
         <div>
           {problems.map((problem, index) => (
             <div key={index}>
-              <p>Problem: {problem.problem}</p>
+              <p>{index + 1}. {problem.problem}</p>
               <p>Answer: {problem.answer}</p>
             </div>
           ))}

@@ -21,7 +21,6 @@ const LandingPage: React.FC<LandingPageProps> = ({ onTopicChange, onRowsChange, 
           <input
             type="text"
             id="topic"
-            defaultValue="Two Digit Multiplications"
             onChange={onTopicChange}
             placeholder="Enter topic"
           />

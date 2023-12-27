@@ -59,7 +59,7 @@ const WorksheetPDF: React.FC<WorksheetPDFProps> = ({ problems }) => {
         <Image src={backgroundImage} style={styles.backgroundImage} />
         {problems.map((problem, index) => (
           <View key={index} style={styles.problemContainer}>
-            <Text style={styles.problemText}>Problem: {problem.problem}</Text>
+            <Text style={styles.problemText}>{index+1}. {problem.problem}</Text>
             <Text style={styles.problemText}>Answer: {problem.answer}</Text>
           </View>
         ))}
