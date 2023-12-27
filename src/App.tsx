@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import LandingPage from './LandingPage';
-import WorksheetGen from './LandingPage2';
 import './App.css'
 import Modal from './Modal'; // Import the Modal component
 import { BlobProvider } from '@react-pdf/renderer';
@@ -13,15 +12,29 @@ type MathProblem = {
   answer: number;
 };
 
+type Problem = {
+  problem: string;
+  answer: string;
+};
+
 const App: React.FC = () => {
   const [mathTopic, setMathTopic] = useState<string>('addition');
+  const [topic, setTopic] = useState('');
   const [rows, setRows] = useState<number>(5);
   const [columns, setColumns] = useState<number>(5);
   const [worksheet, setWorksheet] = useState<MathProblem[][]>([]);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [numberOfProblems, setNumberOfProblems] = useState(5);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<Error | null>(null);
+  const [problems, setProblems] = useState<Problem[]>([]);
 
   const handleTopicChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setMathTopic(event.target.value);
+  };
+
+  const handleTopicChange2 = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setTopic(event.target.value);
   };
 
   const handleRowsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,9 +45,14 @@ const App: React.FC = () => {
     setColumns(parseInt(event.target.value));
   };
 
+  const handleNumsetChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setNumberOfProblems(parseInt(event.target.value, 10));
+  };
+
   const generateWorksheet = () => {
     const generatedWorksheet = WorksheetGenerator(mathTopic, rows, columns);
     setWorksheet(generatedWorksheet);
+    generateWorksheet2();
     setIsModalOpen(true);
   };
 
@@ -42,12 +60,42 @@ const App: React.FC = () => {
     setIsModalOpen(false);
   };
 
+  const generateWorksheet2 = async () => {
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const response = await fetch('http://localhost:3001/generate-problems', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ topic, numberOfProblems })
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      if (!data || !data.choices || !data.choices[0]) {
+        throw new Error('Invalid response format');
+      }
+
+      setProblems(JSON.parse(data.choices[0].text).problems);
+    } catch (error) {
+      setError(error as Error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className='app-container'>
       <LandingPage
         onTopicChange={handleTopicChange}
+        onTopicChange2={handleTopicChange2}
         onRowsChange={handleRowsChange}
         onColumnsChange={handleColumnsChange}
+        onNumsetChange={handleNumsetChange}
         onGenerate={generateWorksheet}
       />
       <Modal isOpen={isModalOpen} onClose={closeModal}>
@@ -88,8 +136,17 @@ const App: React.FC = () => {
             </div>
           ))}
         </div> */}
+        {isLoading && <p>Loading...</p>}
+        {error && <p>Error: {error.message}</p>}
+        <div>
+          {problems.map((problem, index) => (
+            <div key={index}>
+              <p>Problem: {problem.problem}</p>
+              <p>Answer: {problem.answer}</p>
+            </div>
+          ))}
+        </div>
       </Modal>
-      <WorksheetGen/>
     </div>
   );
 };
