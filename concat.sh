@@ -11,9 +11,8 @@ declare -a files=(
     "src/LandingPage.tsx"
     "src/index.css"
     "src/index.tsx"
-    "src/MathWorksheetPDF.tsx"
+    "src/WorksheetPDF.tsx"
     "server.js"
-    "src/LandingPage2.tsx"
     # Add more files as needed
 )
 

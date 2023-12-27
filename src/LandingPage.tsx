@@ -1,39 +1,28 @@
 import React from 'react';
 
 interface LandingPageProps {
-  onTopicChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
-  onTopicChange2: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onTopicChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onRowsChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onColumnsChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onNumsetChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onGenerate: () => void;
 }
 
-const LandingPage: React.FC<LandingPageProps> = ({ onTopicChange, onTopicChange2, onRowsChange, onColumnsChange, onNumsetChange, onGenerate }) => {
+const LandingPage: React.FC<LandingPageProps> = ({ onTopicChange, onRowsChange, onColumnsChange, onNumsetChange, onGenerate }) => {
   return (
     <div className="landing-page">
-      <h1>Math Worksheet Generator</h1>
+      <h1>Practice Worksheet Generator</h1>
       <form onSubmit={(e) => {
         e.preventDefault();
         onGenerate();
       }}>
-        <div className="form-group">
-          <label htmlFor="mathTopic">Math Topic:</label>
-          <select id="mathTopic" onChange={onTopicChange}>
-            <option value="addition">Addition</option>
-            <option value="subtraction">Subtraction</option>
-            <option value="multiplication">Multiplication</option>
-            <option value="division">Division</option>
-            {/* Add more math topics as needed */}
-          </select>
-        </div>
         <div className="form-group">
           <label htmlFor="topic">Enter Topic:</label>
           <input
             type="text"
             id="topic"
             defaultValue="Two Digit Multiplications"
-            onChange={onTopicChange2}
+            onChange={onTopicChange}
             placeholder="Enter topic"
           />
         </div>
