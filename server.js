@@ -20,7 +20,7 @@ const generateProblems = async (topic, numberOfProblems) => {
       messages: [
         {
           role: 'system',
-          content: "You are a problem generator assistant expected to return JSON formatted response.",
+          content: "You are a problem generation assistant designed to output structured JSON.",
         },
         {
           role: 'user',
