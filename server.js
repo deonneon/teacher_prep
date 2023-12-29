@@ -49,7 +49,7 @@ app.post('/generate-problems', async (req, res) => {
 
   try {
     const problems = await generateProblems(topic, numberOfProblems);
-    res.json({ choices: [{ text: JSON.stringify({ problems }) }] }); // Return the response in the expected format
+    res.status(200).json({ problems }); ; // Return the response in the expected format
   } catch (error) {
     res.status(500).json({ error: 'Error generating problems' });
   }
