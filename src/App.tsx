@@ -52,7 +52,8 @@ const App: React.FC = () => {
     setProblems([]);
 
     try {
-      const response = await fetch('http://localhost:3001/generate-problems', {
+      // const response = await fetch('http://localhost:3001/generate-problems', {
+      const response = await fetch('https://teacherprep.netlify.app/.netlify/functions/openaiAPI', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ topic, numberOfProblems })
@@ -61,12 +62,10 @@ const App: React.FC = () => {
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-
+      
       const data = await response.json();
-      if (!data || !data.choices || !data.choices[0]) {
-        throw new Error('Invalid response format');
-      }
-      setProblems(JSON.parse(data.choices[0].text).problems);
+      setProblems(data.problems);
+      console.log(data.problems)
     } catch (error) {
       setError(error as Error);
     } finally {
