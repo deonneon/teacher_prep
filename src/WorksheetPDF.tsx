@@ -1,6 +1,5 @@
 import React from 'react';
 import { Page, Text, View, Document, StyleSheet, Image } from '@react-pdf/renderer';
-import backgroundImage from './background.png';
 
 type Problem = {
   problem: string;
@@ -11,6 +10,7 @@ interface WorksheetPDFProps {
   problems: Problem[];
   rows: number;
   columns: number;
+  backgroundImage: string; 
 }
 
 const styles = StyleSheet.create({
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const WorksheetPDF: React.FC<WorksheetPDFProps> = ({ problems, rows, columns }) => {
+const WorksheetPDF: React.FC<WorksheetPDFProps> = ({ problems, rows, columns , backgroundImage }) => {
   const problemWidth = `${100 / columns}%`;
 
   const dynamicStyles = StyleSheet.create({

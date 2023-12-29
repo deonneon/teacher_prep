@@ -52,6 +52,7 @@
 }
 
 .modal-content {
+  position: relative;
   background-color: white;
   padding: 20px;
   border-radius: 5px;
@@ -60,7 +61,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 80vh; /* Adjust the height of the modal */
+  height: 90vh; /* Adjust the height of the modal */
   overflow: auto; /* Scroll if content exceeds modal height */
 }
 
@@ -74,6 +75,10 @@
 h1 {
   color: #2a3f54;
   text-align: center;
+}
+
+.form-container{
+  padding: 60px;
 }
 
 .form-group {
@@ -163,4 +168,30 @@ button:hover {
   justify-content: center;
   align-items: center;
   height: 60vh; /* Adjust as needed */
+}
+
+.thumbnail-image {
+  width: 100px; /* Set the width for the thumbnail */
+  height: 141px; /* Maintain aspect ratio */
+  margin: 5px; /* Add some space around each thumbnail */
+  cursor: pointer; /* Change cursor on hover */
+  border: 1px solid #ddd; /* Add a border for better visibility */
+  border-radius: 5px; /* Optional: rounded corners for aesthetics */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow for depth */
+}
+
+.modal-close-button {
+  position: absolute;
+  top: -5px; /* Move button 10px above the modal */
+  right: -5px; /* Move button 10px to the right of the modal */
+  border: none;
+  background: #eea830; /* Add a background color */
+  width: 30px; /* Button width */
+  height: 30px; /* Button height */
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Optional: Add shadow for depth */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

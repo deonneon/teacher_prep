@@ -15,7 +15,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ rows, columns, numProblems, o
   return (
     <div className="landing-page">
       <h1>Practice Worksheet Generator</h1>
-      <form onSubmit={(e) => {
+      <form className="form-container" onSubmit={(e) => {
         e.preventDefault();
         onGenerate();
       }}>

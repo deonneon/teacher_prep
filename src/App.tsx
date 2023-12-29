@@ -5,6 +5,27 @@ import Modal from './Modal'; // Import the Modal component
 import { BlobProvider } from '@react-pdf/renderer';
 import WorksheetPDF from './WorksheetPDF'; // Import the PDF component
 import { ScaleLoader } from 'react-spinners';
+import backgroundImage1 from './background/b1.png';
+import backgroundImage2 from './background/b2.png';
+import backgroundImage3 from './background/b3.png';
+import backgroundImage4 from './background/b4.png';
+import backgroundImage5 from './background/b5.jpeg';
+import backgroundImage6 from './background/b6.jpeg';
+import backgroundImage7 from './background/b7.jpeg';
+import backgroundImage8 from './background/b8.jpeg';
+
+// ... import other images
+
+// In App.tsx
+const allImages = [backgroundImage1,
+  backgroundImage2,
+  backgroundImage3,
+  backgroundImage4,
+  backgroundImage5,
+  backgroundImage6,
+  backgroundImage7,
+  backgroundImage8];
+
 
 type Problem = {
   problem: string;
@@ -20,6 +41,11 @@ const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
   const [problems, setProblems] = useState<Problem[]>([]);
+  const [backgroundImage, setBackgroundImage] = useState<string>(backgroundImage1);
+
+  const changeBackground = (image: string) => {
+    setBackgroundImage(image);
+  };
 
   useEffect(() => {
     if (columns === 1) {
@@ -59,7 +85,7 @@ const App: React.FC = () => {
 
     try {
       const response = await fetch('http://localhost:3001/generate-problems', {
-      // const response = await fetch('/.netlify/functions/openaiAPI', {
+        // const response = await fetch('/.netlify/functions/openaiAPI', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ topic, numberOfProblems })
@@ -68,7 +94,7 @@ const App: React.FC = () => {
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-      
+
       const data = await response.json();
       setProblems(data.problems);
       console.log(data.problems)
@@ -91,10 +117,10 @@ const App: React.FC = () => {
         columns={columns}
         numProblems={numberOfProblems}
       />
-      <Modal isOpen={isModalOpen} onClose={closeModal}>
-      <BlobProvider document={<WorksheetPDF problems={problems} rows={rows} columns={columns} />}>
+      <Modal isOpen={isModalOpen} onClose={closeModal} onChangeBackground={changeBackground} backgroundImages={allImages}>
+        <BlobProvider document={<WorksheetPDF problems={problems} rows={rows} columns={columns} backgroundImage={backgroundImage} />}>
           {({ blob, url, loading, error }) => {
-            if (loading || isLoading ) {
+            if (loading || isLoading) {
               return (
                 <div className="spinner-container">
                   <ScaleLoader
@@ -123,18 +149,18 @@ const App: React.FC = () => {
             );
           }}
         </BlobProvider>
-        <div>This is the topic being fetched: { topic }</div>
-        {isLoading && <p>Loading...</p>}
-        {error && <p>Error: {error.message}</p>}
-        <div>
-          {problems.map((problem, index) => (
-            <div key={index}>
-              <p>{index + 1}. {problem.problem}</p>
-              <p>Answer: {problem.answer}</p>
-            </div>
-          ))}
-        </div>
       </Modal>
+      {/* <div>This is the topic being fetched: {topic}</div>
+      {isLoading && <p>Loading...</p>}
+      {error && <p>Error: {error.message}</p>}
+      <div>
+        {problems.map((problem, index) => (
+          <div key={index}>
+            <p>{index + 1}. {problem.problem}</p>
+            <p>Answer: {problem.answer}</p>
+          </div>
+        ))}
+      </div> */}
     </div>
   );
 };
