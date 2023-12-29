@@ -53,7 +53,7 @@ const App: React.FC = () => {
 
     try {
       // const response = await fetch('http://localhost:3001/generate-problems', {
-      const response = await fetch('https://teacherprep.netlify.app/.netlify/functions/openaiAPI', {
+      const response = await fetch('/.netlify/functions/openaiAPI', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ topic, numberOfProblems })
