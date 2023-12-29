@@ -1,0 +1,12 @@
+plugins = []
+headers = []
+redirects = []
+
+[functions]
+
+[functions."*"]
+
+[build]
+command = "npm run build"
+publish = "build"
+functions = "netlify/functions"
