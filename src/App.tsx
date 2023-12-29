@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import LandingPage from './LandingPage';
 import './App.css'
 import Modal from './Modal'; // Import the Modal component
@@ -14,12 +14,18 @@ type Problem = {
 const App: React.FC = () => {
   const [topic, setTopic] = useState('Translate Spanish greetings');
   const [rows, setRows] = useState<number>(5);
-  const [columns, setColumns] = useState<number>(5);
+  const [columns, setColumns] = useState<number>(1);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [numberOfProblems, setNumberOfProblems] = useState(5);
+  const [numberOfProblems, setNumberOfProblems] = useState<number>(10);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
   const [problems, setProblems] = useState<Problem[]>([]);
+
+  useEffect(() => {
+    if (columns === 1) {
+      setRows(numberOfProblems);
+    }
+  }, [columns, numberOfProblems]);
 
   const handleTopicChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setTopic(event.target.value);
@@ -81,9 +87,12 @@ const App: React.FC = () => {
         onColumnsChange={handleColumnsChange}
         onNumsetChange={handleNumsetChange}
         onGenerate={generateWorksheet}
+        rows={rows}
+        columns={columns}
+        numProblems={numberOfProblems}
       />
       <Modal isOpen={isModalOpen} onClose={closeModal}>
-        <BlobProvider document={<WorksheetPDF problems={problems} />}>
+      <BlobProvider document={<WorksheetPDF problems={problems} rows={rows} columns={columns} />}>
           {({ blob, url, loading, error }) => {
             if (loading || isLoading ) {
               return (

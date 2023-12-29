@@ -9,6 +9,8 @@ type Problem = {
 
 interface WorksheetPDFProps {
   problems: Problem[];
+  rows: number;
+  columns: number;
 }
 
 const styles = StyleSheet.create({
@@ -37,32 +39,58 @@ const styles = StyleSheet.create({
     left: 0,
     zIndex: -1,
   },
-  problemContainer: {
-    margin: 10,
-    padding: 15,
-    backgroundColor: '#FFFFFF', // White background
-    borderRadius: 20, // Rounded corners for a cloud-like appearance
-    borderWidth: 1,
-    borderColor: '#DDDDDD', // Light border for definition
-    boxShadow: '0 4px 8px rgba(0,0,0,0.1)', // Soft shadow for depth
-  },
   problemText: {
     fontSize: 12,
     marginBottom: 5, // Space between problem and answer
   },
 });
 
-const WorksheetPDF: React.FC<WorksheetPDFProps> = ({ problems }) => {
+const WorksheetPDF: React.FC<WorksheetPDFProps> = ({ problems, rows, columns }) => {
+  const problemWidth = `${100 / columns}%`;
+
+  const dynamicStyles = StyleSheet.create({
+    problem: {
+      flexGrow: 1,
+      flexBasis: problemWidth,
+      margin: 15,
+      padding: 15,
+      backgroundColor: '#FFFFFF', // White background
+      borderRadius: 20, // Rounded corners for a cloud-like appearance
+      borderWidth: 1,
+      borderColor: '#DDDDDD', // Light border for definition
+      boxShadow: '0 4px 8px rgba(0,0,0,0.1)', // Soft shadow for depth
+    },
+    // Additional dynamic styles if needed
+  });
+
+  // Create a grid of problems based on rows and columns
+  const renderProblemsGrid = () => {
+    let grid = [];
+  
+    for (let row = 0; row < rows; row++) {
+      let rowProblems = problems.slice(row * columns, (row + 1) * columns);
+      grid.push(
+        <View key={row} style={styles.row}>
+          {rowProblems.map((problem, col) => {
+            const currentIndex = row * columns + col;
+            return (
+              <View key={currentIndex} style={dynamicStyles.problem}>
+                <Text style={styles.problemText}>{currentIndex + 1}. {problem.problem}</Text>
+                <Text style={styles.problemText}>Answer: {problem.answer}</Text>
+              </View>
+            );
+          })}
+        </View>
+      );
+    }
+    return grid;
+  };
+
   return (
     <Document>
       <Page size="A4" style={styles.page}>
         <Image src={backgroundImage} style={styles.backgroundImage} />
-        {problems.map((problem, index) => (
-          <View key={index} style={styles.problemContainer}>
-            <Text style={styles.problemText}>{index+1}. {problem.problem}</Text>
-            <Text style={styles.problemText}>Answer: {problem.answer}</Text>
-          </View>
-        ))}
+        {renderProblemsGrid()}
       </Page>
     </Document>
   );
