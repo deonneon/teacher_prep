@@ -19,7 +19,7 @@ declare -a files=(
 # Clear the output file if it already exists
 > "$output_file"
 
-echo -e "I am creating a React App for worksheet generation. The goal is to create a worksheet with practice problems for students to use. These are all the cripts for my React App.\n\n" > "$output_file"
+echo -e "I am creating a React App for worksheet generation. The goal is to create a worksheet with practice problems for students to use. These are all the scripts for my React App.\n\n" > "$output_file"
 
 # Loop through each file in the list
 for file in "${files[@]}"

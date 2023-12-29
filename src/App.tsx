@@ -85,7 +85,7 @@ const App: React.FC = () => {
       <Modal isOpen={isModalOpen} onClose={closeModal}>
         <BlobProvider document={<WorksheetPDF problems={problems} />}>
           {({ blob, url, loading, error }) => {
-            if (loading) {
+            if (loading || isLoading ) {
               return (
                 <div className="spinner-container">
                   <ScaleLoader
