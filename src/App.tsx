@@ -42,6 +42,8 @@ const App: React.FC = () => {
   const [error, setError] = useState<Error | null>(null);
   const [problems, setProblems] = useState<Problem[]>([]);
   const [backgroundImage, setBackgroundImage] = useState<string>(backgroundImage1);
+  const [borderVisible, setBorderVisible] = useState<boolean>(true);
+
 
   const changeBackground = (image: string) => {
     setBackgroundImage(image);
@@ -84,8 +86,8 @@ const App: React.FC = () => {
     setProblems([]);
 
     try {
-      const response = await fetch('http://localhost:3001/generate-problems', {
-        // const response = await fetch('/.netlify/functions/openaiAPI', {
+      // const response = await fetch('http://localhost:3001/generate-problems', {
+      const response = await fetch('/.netlify/functions/openaiAPI', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ topic, numberOfProblems })
@@ -117,8 +119,8 @@ const App: React.FC = () => {
         columns={columns}
         numProblems={numberOfProblems}
       />
-      <Modal isOpen={isModalOpen} onClose={closeModal} onChangeBackground={changeBackground} backgroundImages={allImages}>
-        <BlobProvider document={<WorksheetPDF problems={problems} rows={rows} columns={columns} backgroundImage={backgroundImage} />}>
+      <Modal isOpen={isModalOpen} onClose={closeModal} onChangeBackground={changeBackground} backgroundImages={allImages} borderVisible={borderVisible} setBorderVisible={setBorderVisible} >
+        <BlobProvider document={<WorksheetPDF problems={problems} rows={rows} columns={columns} backgroundImage={backgroundImage} borderVisible={borderVisible} />}>
           {({ blob, url, loading, error }) => {
             if (loading || isLoading) {
               return (

@@ -10,7 +10,8 @@ interface WorksheetPDFProps {
   problems: Problem[];
   rows: number;
   columns: number;
-  backgroundImage: string; 
+  backgroundImage: string;
+  borderVisible: boolean;
 }
 
 const styles = StyleSheet.create({
@@ -34,7 +35,7 @@ const styles = StyleSheet.create({
   backgroundImage: {
     position: 'absolute',
     width: '99.99%',
-    height: '99.99%', 
+    height: '99.99%',
     top: 0,
     left: 0,
     zIndex: -1,
@@ -45,7 +46,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const WorksheetPDF: React.FC<WorksheetPDFProps> = ({ problems, rows, columns , backgroundImage }) => {
+const WorksheetPDF: React.FC<WorksheetPDFProps> = ({ problems, rows, columns, backgroundImage, borderVisible }) => {
   const problemWidth = `${100 / columns}%`;
 
   const dynamicStyles = StyleSheet.create({
@@ -56,7 +57,7 @@ const WorksheetPDF: React.FC<WorksheetPDFProps> = ({ problems, rows, columns , b
       padding: 15,
       backgroundColor: '#FFFFFF', // White background
       borderRadius: 20, // Rounded corners for a cloud-like appearance
-      borderWidth: 1,
+      borderWidth: borderVisible ? 1 : 0,
       borderColor: '#DDDDDD', // Light border for definition
       boxShadow: '0 4px 8px rgba(0,0,0,0.1)', // Soft shadow for depth
     },
@@ -66,7 +67,7 @@ const WorksheetPDF: React.FC<WorksheetPDFProps> = ({ problems, rows, columns , b
   // Create a grid of problems based on rows and columns
   const renderProblemsGrid = () => {
     let grid = [];
-  
+
     for (let row = 0; row < rows; row++) {
       let rowProblems = problems.slice(row * columns, (row + 1) * columns);
       grid.push(
