@@ -37,7 +37,7 @@ const App: React.FC = () => {
   const [rows, setRows] = useState<number>(5);
   const [columns, setColumns] = useState<number>(1);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [numberOfProblems, setNumberOfProblems] = useState<number>(10);
+  const [numberOfProblems, setNumberOfProblems] = useState<number>(8);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
   const [problems, setProblems] = useState<Problem[]>([]);
