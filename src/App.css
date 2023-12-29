@@ -1,15 +1,6 @@
 .app-container {
   height: 100vh; /* Full viewport height */
-  padding: 5% 30%;
-}
-
-.generate-button {
-  margin: auto; /* Center the button in the available space */
-}
-
-.pdf-viewer-container {
-  flex: 1; /* Take up the remaining space */
-  padding: 20px; /* Responsive padding */
+  padding: 5% 20%;
 }
 
 /* Media query for smaller screens */
@@ -18,6 +9,23 @@
     flex-direction: column;
     padding: 10px;
   }
+}
+
+/* Media query for smaller screens */
+@media (min-width: 1200px) {
+  .app-container {
+    flex-direction: column;
+    padding: 5% 30%;
+  }
+}
+
+.generate-button {
+  margin: auto; /* Center the button in the available space */
+}
+
+.pdf-viewer-container {
+  flex: 1; /* Take up the remaining space */
+  padding: 20px; 
 }
 
 .worksheet-display {
@@ -61,14 +69,14 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 90vh; /* Adjust the height of the modal */
+  height: 90vh; 
   overflow: auto; /* Scroll if content exceeds modal height */
 }
 
 @media (max-width: 768px) {
   .modal-content {
-    width: 95%;   /* Larger width for smaller screens */
-    height: auto; /* Auto height for better mobile viewing */
+    width: 90%;   /* Larger width for smaller screens */
+    height: 90%; /* Auto height for better mobile viewing */
   }
 }
 
@@ -79,6 +87,13 @@ h1 {
 
 .form-container{
   padding: 60px;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  .form-container{
+    padding: 0px;
+  }
 }
 
 .form-group {
@@ -170,27 +185,49 @@ button:hover {
   height: 60vh; /* Adjust as needed */
 }
 
+.thumbnail-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.thumbnail-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
 .thumbnail-image {
-  width: 100px; /* Set the width for the thumbnail */
-  height: 141px; /* Maintain aspect ratio */
-  margin: 5px; /* Add some space around each thumbnail */
-  cursor: pointer; /* Change cursor on hover */
-  border: 1px solid #ddd; /* Add a border for better visibility */
-  border-radius: 5px; /* Optional: rounded corners for aesthetics */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow for depth */
+  width: 100px; 
+  height: 141px; 
+  margin: 5px; 
+  cursor: pointer; 
+  border: 1px solid #ddd; 
+  border-radius: 5px; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+}
+
+@media (max-width: 400px) {
+  .thumbnail-image {
+    width: 100px; 
+    height: 141px; 
+    margin: 0;
+    margin-top: 15px; 
+  }
 }
 
 .modal-close-button {
   position: absolute;
-  top: -5px; /* Move button 10px above the modal */
-  right: -5px; /* Move button 10px to the right of the modal */
+  top: -5px;
+  right: -5px;
   border: none;
-  background: #eea830; /* Add a background color */
-  width: 30px; /* Button width */
-  height: 30px; /* Button height */
+  background: #eea830;
+  width: 30px; 
+  height: 30px; 
   font-size: 16px;
   cursor: pointer;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Optional: Add shadow for depth */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); 
   display: flex;
   justify-content: center;
   align-items: center;
