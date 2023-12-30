@@ -141,7 +141,10 @@ const App: React.FC = () => {
               <div>
                 {url && (
                   <>
-                    <iframe src={url} className="pdf-iframe" title="Worksheet PDF"></iframe>
+                    <div>
+                      <iframe src={url} className="pdf-iframe large-screen" title="Large Screen PDF" />
+                      <iframe src={`${url}#zoom=50`} className="pdf-iframe small-screen" title="Small Screen PDF" />
+                    </div>
                     <a href={url} download="math-worksheet.pdf" className="download-button">
                       Download PDF
                     </a>
