@@ -178,21 +178,6 @@ button:hover {
   margin-bottom: 10px;
 }
 
-.pdf-iframe.large-screen {
-  display: none;
-}
-
-/* For screens wider than 600px, display the large-screen iframe and hide the small-screen one */
-@media (min-width: 600px) {
-  .pdf-iframe.large-screen {
-    display: block;
-  }
-
-  .pdf-iframe.small-screen {
-    display: none;
-  }
-}
-
 .spinner-container {
   display: flex;
   justify-content: center;
