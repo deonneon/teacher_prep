@@ -8,6 +8,8 @@ interface ModalProps {
   backgroundImages: string[]; // Add this line
   borderVisible: boolean;
   setBorderVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  showAnswers: boolean;
+  onToggleAnswers: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const Modal: React.FC<ModalProps> = ({
@@ -18,12 +20,18 @@ const Modal: React.FC<ModalProps> = ({
   backgroundImages,
   borderVisible,
   setBorderVisible,
+  showAnswers,
+  onToggleAnswers,
 }) => {
   if (!isOpen) return null;
 
   // Slider to toggle border
   const handleBorderToggle = (event: React.ChangeEvent<HTMLInputElement>) => {
     setBorderVisible(event.target.checked);
+  };
+
+  const handleAnswerToggle = (event: React.ChangeEvent<HTMLInputElement>) => {
+    onToggleAnswers(event.target.checked);
   };
 
   return (
@@ -41,6 +49,15 @@ const Modal: React.FC<ModalProps> = ({
               type="checkbox"
               checked={borderVisible}
               onChange={handleBorderToggle}
+            />
+            <span className="slider round"></span>
+          </label>
+          <label htmlFor="border-toggle">Include Answers:</label>
+          <label className="switch">
+            <input
+              type="checkbox"
+              checked={showAnswers}
+              onChange={handleAnswerToggle}
             />
             <span className="slider round"></span>
           </label>

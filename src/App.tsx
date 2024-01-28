@@ -51,9 +51,14 @@ const App: React.FC = () => {
   const [backgroundImage, setBackgroundImage] =
     useState<string>(backgroundImage1);
   const [borderVisible, setBorderVisible] = useState<boolean>(true);
+  const [showAnswers, setShowAnswers] = useState<boolean>(false); // Add this
 
   const changeBackground = (image: string) => {
     setBackgroundImage(image);
+  };
+
+  const toggleAnswers = () => {
+    setShowAnswers(!showAnswers);
   };
 
   useEffect(() => {
@@ -167,6 +172,8 @@ const App: React.FC = () => {
         backgroundImages={allImages}
         borderVisible={borderVisible}
         setBorderVisible={setBorderVisible}
+        onToggleAnswers={toggleAnswers}
+        showAnswers={showAnswers}
       >
         <BlobProvider
           document={
@@ -176,6 +183,7 @@ const App: React.FC = () => {
               columns={columns}
               backgroundImage={backgroundImage}
               borderVisible={borderVisible}
+              showAnswers={showAnswers}
             />
           }
         >

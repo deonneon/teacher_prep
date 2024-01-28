@@ -1,5 +1,12 @@
-import React from 'react';
-import { Page, Text, View, Document, StyleSheet, Image } from '@react-pdf/renderer';
+import React from "react";
+import {
+  Page,
+  Text,
+  View,
+  Document,
+  StyleSheet,
+  Image,
+} from "@react-pdf/renderer";
 
 type Problem = {
   problem: string;
@@ -12,30 +19,31 @@ interface WorksheetPDFProps {
   columns: number;
   backgroundImage: string;
   borderVisible: boolean;
+  showAnswers: boolean;
 }
 
 const styles = StyleSheet.create({
   page: {
-    position: 'relative',
-    width: '210mm',
-    height: '297mm',
+    position: "relative",
+    width: "210mm",
+    height: "297mm",
     padding: 0,
   },
   row: {
-    flexDirection: 'row',
-    width: '100%',
-    alignItems: 'flex-start',
+    flexDirection: "row",
+    width: "100%",
+    alignItems: "flex-start",
   },
   problem: {
     flexGrow: 1,
-    flexBasis: '0%', // Adjust based on columns
+    flexBasis: "0%", // Adjust based on columns
     margin: 5,
     padding: 15,
   },
   backgroundImage: {
-    position: 'absolute',
-    width: '99.99%',
-    height: '99.99%',
+    position: "absolute",
+    width: "99.99%",
+    height: "99.99%",
     top: 0,
     left: 0,
     zIndex: -1,
@@ -46,7 +54,14 @@ const styles = StyleSheet.create({
   },
 });
 
-const WorksheetPDF: React.FC<WorksheetPDFProps> = ({ problems, rows, columns, backgroundImage, borderVisible }) => {
+const WorksheetPDF: React.FC<WorksheetPDFProps> = ({
+  problems,
+  rows,
+  columns,
+  backgroundImage,
+  borderVisible,
+  showAnswers,
+}) => {
   const problemWidth = `${100 / columns}%`;
 
   const dynamicStyles = StyleSheet.create({
@@ -55,11 +70,11 @@ const WorksheetPDF: React.FC<WorksheetPDFProps> = ({ problems, rows, columns, ba
       flexBasis: problemWidth,
       margin: 15,
       padding: 15,
-      backgroundColor: '#FFFFFF', // White background
+      backgroundColor: "#FFFFFF", // White background
       borderRadius: 20, // Rounded corners for a cloud-like appearance
       borderWidth: borderVisible ? 1 : 0,
-      borderColor: '#DDDDDD', // Light border for definition
-      boxShadow: '0 4px 8px rgba(0,0,0,0.1)', // Soft shadow for depth
+      borderColor: "#DDDDDD", // Light border for definition
+      boxShadow: "0 4px 8px rgba(0,0,0,0.1)", // Soft shadow for depth
     },
     // Additional dynamic styles if needed
   });
@@ -76,8 +91,14 @@ const WorksheetPDF: React.FC<WorksheetPDFProps> = ({ problems, rows, columns, ba
             const currentIndex = row * columns + col;
             return (
               <View key={currentIndex} style={dynamicStyles.problem}>
-                <Text style={styles.problemText}>{currentIndex + 1}. {problem.problem}</Text>
-                <Text style={styles.problemText}>Answer: {problem.answer}</Text>
+                <Text style={styles.problemText}>
+                  {currentIndex + 1}. {problem.problem}
+                </Text>
+                {showAnswers && (
+                  <Text style={styles.problemText}>
+                    Answer: {problem.answer}
+                  </Text>
+                )}
               </View>
             );
           })}
