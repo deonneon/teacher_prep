@@ -19,7 +19,7 @@ const generateProblems = async (topic, numberOfProblems) => {
           content: `Generate ${numberOfProblems} problem answer pairs on the topic of ${topic}. Do not provide less than ${numberOfProblems} pairs`,
         },
       ],
-      model: "gpt-3.5-turbo",
+      model: "gpt-3.5-turbo-1106",
       response_format: { type: "json_object" },
     });
     console.log("full response", response);
