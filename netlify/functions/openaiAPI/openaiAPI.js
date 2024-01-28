@@ -1,7 +1,7 @@
 const openai = require("openai");
 
 // Initialize OpenAI client
-const openaiApiKey = process.env.REACT_APP_OPENAI_API_KEY;
+const openaiApiKey = process.env.OPENAI_API_KEY;
 const openaiClient = new openai({ apiKey: openaiApiKey });
 
 // Function to generate problems using OpenAI
