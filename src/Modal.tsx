@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 interface ModalProps {
   isOpen: boolean;
@@ -10,7 +10,15 @@ interface ModalProps {
   setBorderVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children, onChangeBackground, backgroundImages, borderVisible, setBorderVisible }) => {
+const Modal: React.FC<ModalProps> = ({
+  isOpen,
+  onClose,
+  children,
+  onChangeBackground,
+  backgroundImages,
+  borderVisible,
+  setBorderVisible,
+}) => {
   if (!isOpen) return null;
 
   // Slider to toggle border
@@ -21,19 +29,33 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children, onChangeBackgr
   return (
     <div className="modal-backdrop">
       <div className="modal-content">
-        <button onClick={onClose} className="modal-close-button">X</button>
+        <button onClick={onClose} className="modal-close-button">
+          X
+        </button>
         {children}
         <div className="toggle-container">
           <label htmlFor="border-toggle">Border:</label>
           <label className="switch">
-            <input id="border-toggle" type="checkbox" checked={borderVisible} onChange={handleBorderToggle} />
+            <input
+              id="border-toggle"
+              type="checkbox"
+              checked={borderVisible}
+              onChange={handleBorderToggle}
+            />
             <span className="slider round"></span>
           </label>
         </div>
-        Click below to change backdrop. To generate custom backdrop, please subscribe to premium membership.
+        Click below to change backdrop. To generate custom backdrop, please
+        subscribe to premium membership.
         <div className="thumbnail-container">
           {backgroundImages.map((image, index) => (
-            <img className="thumbnail-image" key={index} src={image} onClick={() => onChangeBackground(image)} alt={`Background ${index + 1}`} />
+            <img
+              className="thumbnail-image"
+              key={index}
+              src={image}
+              onClick={() => onChangeBackground(image)}
+              alt={`Background ${index + 1}`}
+            />
           ))}
         </div>
       </div>

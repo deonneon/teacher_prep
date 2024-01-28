@@ -7,16 +7,17 @@ const openaiClient = new openai({ apiKey: openaiApiKey });
 // Function to generate problems using OpenAI
 const generateProblems = async (topic, numberOfProblems) => {
   try {
+    const prompt = `Generate ${numberOfProblems} problems on the topic of ${topic}, in the format of a list of objects with 'problem' and 'answer' keys.`;
     const response = await openaiClient.chat.completions.create({
       messages: [
         {
           role: "system",
           content:
-            'You are a problem generation assistant designed to output structured JSON in the format:\n[{ "problem": "get problem", "answer": "get answer" }]',
+            'You are a problem generation assistant. Output problems and answers in JSON format in a "problems" array at the top level. The keys should look like this:\n[{"problem": "Example problem", "answer": "Example answer"}, ...]',
         },
         {
           role: "user",
-          content: `Generate ${numberOfProblems} problem answer pairs on the topic of ${topic}. Do not provide less than ${numberOfProblems} pairs`,
+          content: prompt,
         },
       ],
       model: "gpt-3.5-turbo-1106",

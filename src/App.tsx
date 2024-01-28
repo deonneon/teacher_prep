@@ -87,6 +87,10 @@ const App: React.FC = () => {
     setIsModalOpen(false);
   };
 
+  const regenerateWorksheet = () => {
+    generateProblems();
+  };
+
   const generateProblems = async (retryCount = 3) => {
     setIsLoading(true);
     setError(null);
@@ -211,6 +215,12 @@ const App: React.FC = () => {
                     >
                       Download PDF
                     </a>
+                    <button
+                      className="download-button"
+                      onClick={regenerateWorksheet}
+                    >
+                      Regenerate Problems
+                    </button>
                   </>
                 )}
               </div>
