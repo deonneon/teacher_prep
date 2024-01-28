@@ -16,17 +16,16 @@ const generateProblems = async (topic, numberOfProblems) => {
         },
         {
           role: "user",
-          content: `Generate ${numberOfProblems} problems on the topic of ${topic}.`,
+          content: `Generate ${numberOfProblems} problem answer pairs on the topic of ${topic}. Do not provide less than ${numberOfProblems} pairs`,
         },
       ],
-      model: "gpt-3.5-turbo-1106", // Use the appropriate GPT-3 model
+      model: "gpt-3.5-turbo",
       response_format: { type: "json_object" },
-      //max_tokens: 150, // Adjust as needed
     });
     console.log("full response", response);
     const generatedProblemsSet = response.choices[0].message.content;
     console.log("problem response", generatedProblemsSet);
-    const problemsArray = JSON.parse(generatedProblemsSet).problems; // Extract the problems array
+    const problemsArray = JSON.parse(generatedProblemsSet).problems;
     return problemsArray;
   } catch (error) {
     console.error("Error generating problems:", error);
