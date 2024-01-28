@@ -1,0 +1,16 @@
+Fix backdrop quality. Load the thumbnail icon for web. Load the web version for pdf viewing. Load the printer version when downloading. 
+
+Screen Viewing (Digital Worksheets):
+
+Resolution: 96 to 150 DPI is typically sufficient. It's clear on most screens and doesn't make the file unnecessarily large.
+Printing (Physical Copies):
+
+Resolution: 300 DPI is standard for printed materials. It ensures that the background is clear and detailed when printed.
+
+----
+Have the ability to upload own background. The background will be saved to the local session. 
+have the ability to save background to user profile for premium
+
+-----
+
+Fix mobile height
