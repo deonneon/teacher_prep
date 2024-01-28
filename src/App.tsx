@@ -46,7 +46,7 @@ const App: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [numberOfProblems, setNumberOfProblems] = useState<number>(8);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<Error | null>(null);
+  const [, setError] = useState<Error | null>(null);
   const [problems, setProblems] = useState<Problem[]>([]);
   const [backgroundImage, setBackgroundImage] =
     useState<string>(backgroundImage1);
