@@ -43,12 +43,12 @@ const LandingPage: React.FC<LandingPageProps> = ({
             type="text"
             id="topic"
             onChange={onTopicChange}
-            placeholder="Be Specific!"
+            placeholder="Be specific! ex: spanish greetings, two digit multiplications"
           />
           <div className="hint-topic">
             <i>
               Hint: The more specific the topic is, the more relevant the
-              questions will be.
+              questions will be. There is not limit to length.
             </i>
           </div>
         </div>
