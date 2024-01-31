@@ -1,46 +1,33 @@
-# Getting Started with Create React App
+# Practice Worksheet Generator Guide
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to the Practice Worksheet Generator, a dynamic tool designed to empower educators with the ability to create customized worksheets tailored to their curriculum needs. This intuitive app leverages generative AI to produce a diverse range of questions based on the specific topics you input, offering a seamless blend of convenience and customization.
 
-## Available Scripts
+## Getting Started
 
-In the project directory, you can run:
+Enter Your Topic: Begin by specifying the topic for which you need questions generated. The detail you provide directly influences the quality and relevance of the generated questions, enabling a tailored educational experience for your students.
 
-### `npm start`
+Customize Worksheet Layout: Choose the number of problems, rows, and columns for your worksheet. This flexibility allows you to design a layout that best fits your teaching style and the needs of your students.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Generate and Customize: With a single click, generate your worksheet. Before finalizing, you have the option to select a background image from our library to enhance the visual appeal of your worksheet. Additionally, toggle the visibility of borders around each question for a cleaner look, according to your preference.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Preview and Download: Once your worksheet is generated, preview it within the app. Satisfied with the result? Download it as a PDF, ready for printing or distribution to your students.
 
-### `npm test`
+## Features
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Generative AI Question Creation: Input your topic and let our AI do the rest, generating high-quality, relevant questions that challenge and engage your students.
 
-### `npm run build`
+Customizable Layouts: Tailor the number of questions, as well as the rows and columns on each page, to create the perfect worksheet for your class's needs.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Visual Customization: Enhance the aesthetic of your worksheets with background images and border toggles, making learning visually appealing.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Instant Preview and Download: Review your worksheet within the app and download it as a printable PDF, streamlining your lesson preparation process.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Tips for Optimal Use:
 
-### `npm run eject`
+Be Specific: The more detailed your topic input, the more tailored and effective the generated questions will be.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Experiment with Layouts: Utilize the customizable layout options to find what works best for your teaching strategy and student engagement.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Visual Appeal Matters: Select a background and adjust borders to make worksheets more engaging for students, potentially increasing their interest and participation.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+This tool is designed to save you time while enhancing the learning experience for your students. By combining your expertise with our generative AI, you can quickly create effective, engaging, and visually appealing educational materials.
