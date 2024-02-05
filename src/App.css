@@ -323,4 +323,10 @@ input:checked + .slider:before {
   .form-container p {
     font-size: 12px;
   }
+  .hint-topic {
+    font-size: 12px;
+  }
+  .form-group label {
+    font-size: 12px;
+  }
 }
